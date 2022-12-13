@@ -16,6 +16,7 @@ export class App extends React.Component {
     modalImg: "",
   };
 
+
   componentDidUpdate(_, prevState,) {
     const getApiByName = async (searchQ, page) => {
       try {
@@ -32,13 +33,13 @@ export class App extends React.Component {
         this.setState({ isLoading: false })
       }
     }
-    if (prevState.searchQ !== this.state.searchQ) return getApiByName(this.state.searchQ);
+    if (prevState.searchQ !== this.state.searchQ) return getApiByName(this.state.searchQ, this.state.page);
     if (prevState.page !== this.state.page) return getApiByName(this.state.searchQ, this.state.page);
     else return;
   };
 
   onFind = (search) => {
-    this.setState({ searchQ: search, pictures: [], })
+    this.setState({ searchQ: search, pictures: [], page: 1 })
   }
 
   onClick = () => {
